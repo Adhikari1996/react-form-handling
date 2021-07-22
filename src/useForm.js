@@ -1,36 +1,54 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
-const useForm = (callback, validate) => {
-  const [values, setValues] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const userData = {
+  username: '',
+  email: '',
+  password: '',
+  gender: 'male',
+  isAgree: false,
+  select: '',
+}
 
-  const handleChange = event => {
-    const { name, value } = event.target;
-    setValues({
-      ...values,
-      [name]: value
-    });
-  };
+const useForm = (callback, Validate) => {
+  const [addInfo, setAddInfo] = useState(userData)
+  const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    setErrors(validate(values));
-    setIsSubmitting(true);
-  };
+  const handleInputChange = event => {
+    // const value =
+    //   event.target.type === 'checkbox'
+    //     ? event.target.checked
+    //     : event.target.value
+    // const { name, value } = event.target.value
+
+    const target = event.target
+    const name = target.name
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    setAddInfo({
+      ...addInfo,
+      [name]: value,
+    })
+  }
+
+  const formSubmit = event => {
+    event.preventDefault()
+    setErrors(Validate(addInfo))
+    setIsSubmitting(true)
+    event.target.reset()
+  }
+
+  const resetInputField = () => {
+    setAddInfo('')
+  }
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      callback();
+      callback()
+      resetInputField()
     }
-  }, [errors]);
+  }, [errors])
 
-  return {
-    handleChange,
-    handleSubmit,
-    values,
-    errors
-  };
-};
+  return { addInfo, handleInputChange, formSubmit, errors }
+}
 
-export default useForm;
+export default useForm
