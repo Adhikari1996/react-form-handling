@@ -1,0 +1,67 @@
+.UserLogin {
+  height: auto;
+  width: 500px;
+  background-color: silver;
+  padding: 20px 0;
+  border-radius: 10px;
+  font-size: 22px;
+  margin: auto 0;
+  display: inline-block;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+.UserForm {
+  margin: 25px;
+}
+.label {
+  padding: 10px;
+}
+.Input {
+  height: 40px;
+  width: 300px;
+}
+.Input:focus {
+  outline: none;
+}
+.Gender {
+  display: inline-block;
+  font-size: 20px;
+}
+.GenderLabel {
+  margin: 20px;
+  margin-right: 70px;
+}
+.select {
+  height: 40px;
+  width: 150px;
+  margin-left: 20px;
+}
+.selectForm {
+  margin: 30px;
+  margin-right: 105px;
+}
+.Button {
+  width: 80%;
+  height: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 20px;
+  background-color: #eee;
+  color: cadetblue;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.Button:focus {
+  outline: none;
+}
+.checkbox {
+  font-size: 15px;
+  margin-right: 270px;
+}
+.errors {
+  color: red;
+  font-size: 16px;
+}
+.inputError {
+  border-color: red;
+}
