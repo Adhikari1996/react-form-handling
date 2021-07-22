@@ -1,64 +1,119 @@
-import React, { useState } from "react";
-import useForm from "./useForm";
-import validate from "./validateLogin";
-import "./index.css";
+import React from 'react'
+import useForm from './common/useForm'
+import './userLoginForm.css'
+import Validate from './validate'
 
-const Form = () => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    submit,
-    validate
-  );
+const UserLoginForm = props => {
+  const { addInfo, handleInputChange, formSubmit, errors } = useForm(
+    userDataSubmit,
+    Validate
+  )
 
-  function submit() {
-    console.log("Submitted Succesfully");
+  function userDataSubmit() {
+    window.alert('form submitted sucessfully')
+    console.log('form submitted sucessfully...')
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} noValidate>
-        <div>
-          <label>Email</label>
-          <div>
+    <div className="UserLogin">
+      <h2 style={{ color: 'cadetblue' }}>User Login Form</h2>
+      <form onSubmit={formSubmit}>
+        <div className="UserForm">
+          <label className="label">User Name </label>
+          <input
+            className={`${'Input'} ${errors.username && 'inputError'}`}
+            type="text"
+            name="username"
+            value={addInfo.username}
+            onChange={handleInputChange}
+          />
+          {errors.username && <span className="errors">{errors.username}</span>}
+        </div>
+        <div className="UserForm">
+          <label className="label">User Email </label>
+          <input
+            className={`${'Input'} ${errors.email && 'inputError'}`}
+            type="text"
+            name="email"
+            value={addInfo.email}
+            onChange={handleInputChange}
+          />
+          {errors.email && <span className="errors">{errors.email}</span>}
+        </div>
+        <div className="UserForm">
+          <label className="label">Password </label>
+          <input
+            className={`${'Input'} ${errors.password && 'inputError'}`}
+            type="password"
+            name="password"
+            value={addInfo.password}
+            onChange={handleInputChange}
+          />
+          {errors.password && <span className="errors">{errors.password}</span>}
+        </div>
+        <div className="GenderLabel">
+          <label className="label">Gender </label>
+          <div className="Gender">
             <input
-              className={`${errors.email && "inputError"}`}
-              name="email"
-              type="email"
-              value={values.email}
-              onChange={handleChange}
+              type="radio"
+              name="gender"
+              value="male"
+              onChange={handleInputChange}
+              checked={addInfo.gender === 'male'}
             />
-            {errors.email && <p className="error">{errors.email}</p>}
+            <label className="label">Male </label>
+          </div>
+          <div className="Gender">
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              onChange={handleInputChange}
+              checked={addInfo.gender === 'female'}
+            />
+            <label className="label">Female </label>
+          </div>
+          <div className="Gender">
+            <input
+              type="radio"
+              name="gender"
+              value="other"
+              onChange={handleInputChange}
+              checked={addInfo.gender === 'other'}
+            />
+            <label className="label">Other </label>
           </div>
         </div>
-        <div>
-          <label>Password</label>
-          <div>
-            <input
-              className={`${errors.email && "inputError"}`}
-              name="password"
-              type="password"
-              value={values.password}
-              onChange={handleChange}
-            />
-            {errors.password && <p className="error">{errors.password}</p>}
-          </div>
+
+        <div className="selectForm">
+          <label className="label">Select Language</label>
+          <select
+            className="select"
+            name="select"
+            value={addInfo.select}
+            onChange={handleInputChange}
+          >
+            <option value="react">React</option>
+            <option value="angular">Angular</option>
+            <option value="node">Node</option>
+            <option value="express">Express</option>
+          </select>
         </div>
-        <button type="submit">Submit</button>
+        <div className="checkbox">
+          <label>Are you agree? </label>
+          <input
+            type="checkbox"
+            name="isAgree"
+            onChange={handleInputChange}
+            checked={addInfo.isAgree}
+          />
+        </div>
+        <button className="Button" type="submit">
+          User Login
+        </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-// form
-// label / input for email
-// label / input for password
-// signup button
-
-// handle changes
-// handle submit
-
-// custom react hook
-
-// handle errors
-// show errors if there are errors
-
-export default Form;
+export default UserLoginForm
