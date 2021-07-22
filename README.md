@@ -170,14 +170,3 @@ We'd love to have your helping hand on `create-react-app`! See [CONTRIBUTING.md]
 Looking for something similar, but for React Native?<br>
 Check out [Expo CLI](https://github.com/expo/expo-cli).
 
-## Acknowledgements
-
-We are grateful to the authors of existing related projects for their ideas and collaboration:
-
-- [@eanplatter](https://github.com/eanplatter)
-- [@insin](https://github.com/insin)
-- [@mxstbr](https://github.com/mxstbr)
-
-## License
-
-Create React App is open source software [licensed as MIT](https://github.com/facebook/create-react-app/blob/master/LICENSE).
